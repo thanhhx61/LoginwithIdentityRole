@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@using Login2.Constants
+<h1>Students Management</h1>
+<br />
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Students.Create)).Result.Succeeded)
+{
+    <button class="btn btn-success">Create</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Students.View)).Result.Succeeded)
+{
+    <button class="btn btn-info">View</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Students.Edit)).Result.Succeeded)
+{
+    <button class="btn btn-warning">Modify</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Students.Delete)).Result.Succeeded)
+{
+    <button class="btn btn-danger">Delete</button>
+}
